@@ -4,14 +4,19 @@ import Amplify from "aws-amplify";
 import Async from "react-async";
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import awsconfig from "./aws-exports";
 import * as queries from "./graphql/queries";
 import loading from "./loading.gif";
 import errorImg from "./error.png";
 import nodataImg from "./nodata.jpg";
 import Header from "./Header";
 import Footer from "./Footer";
-Amplify.configure(awsconfig);
+Amplify.configure({
+  aws_appsync_graphqlEndpoint:
+    "https://i3saxwojxra6hnmmklygaj42fe.appsync-api.us-east-2.amazonaws.com/graphql",
+  aws_appsync_region: "us-east-2",
+  aws_appsync_authenticationType: "API_KEY",
+  aws_appsync_apiKey: "da2-cb6abdaghbd3hdiesgiauflu7y"
+});
 
 class App extends Component {
   state = {
