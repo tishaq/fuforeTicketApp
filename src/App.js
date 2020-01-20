@@ -11,11 +11,11 @@ import nodataImg from "./nodata.jpg";
 import Header from "./Header";
 import Footer from "./Footer";
 Amplify.configure({
-  aws_appsync_graphqlEndpoint:
-    "https://i3saxwojxra6hnmmklygaj42fe.appsync-api.us-east-2.amazonaws.com/graphql",
-  aws_appsync_region: "us-east-2",
-  aws_appsync_authenticationType: "API_KEY",
-  aws_appsync_apiKey: "da2-cb6abdaghbd3hdiesgiauflu7y"
+  aws_appsync_graphqlEndpoint: process.env.REACT_APP_appsync_graphqlEndpoint,
+  aws_appsync_region: process.env.REACT_APP_appsync_region,
+  aws_appsync_authenticationType:
+    process.env.REACT_APP_appsync_authenticationType,
+  aws_appsync_apiKey: process.env.REACT_APP_appsync_apiKey
 });
 
 class App extends Component {
