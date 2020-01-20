@@ -1,0 +1,122 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Mutation {
+  createTicket(input: CreateTicketInput!): Ticket
+  deleteTicket(input: DeleteTicketInput!): Ticket
+  updateTicket(input: UpdateTicketInput!): Ticket
+}
+
+type Query {
+  getTicket(id: ID!): Ticket
+  listTickets(filter: TableTicketFilterInput, limit: Int, nextToken: String): TicketConnection
+}
+
+type Subscription {
+  onCreateTicket(deviceName: String, fee: Int, id: ID, itemType: String, receiptType: String): Ticket @aws_subscribe(mutations : ["createTicket"])
+  onDeleteTicket(deviceName: String, fee: Int, id: ID, itemType: String, receiptType: String): Ticket @aws_subscribe(mutations : ["deleteTicket"])
+  onUpdateTicket(deviceName: String, fee: Int, id: ID, itemType: String, receiptType: String): Ticket @aws_subscribe(mutations : ["updateTicket"])
+}
+
+type Ticket {
+  date: String
+  deviceName: String
+  fee: Int
+  id: ID!
+  itemType: String
+  receiptType: String
+}
+
+type TicketConnection {
+  items: [Ticket]
+  nextToken: String
+}
+
+input CreateTicketInput {
+  date: String
+  deviceName: String
+  fee: Int
+  id: ID
+  itemType: String
+  receiptType: String
+}
+
+input DeleteTicketInput {
+  id: ID!
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input TableTicketFilterInput {
+  date: TableStringFilterInput
+  deviceName: TableStringFilterInput
+  fee: TableIntFilterInput
+  id: TableIDFilterInput
+  itemType: TableStringFilterInput
+  receiptType: TableStringFilterInput
+}
+
+input UpdateTicketInput {
+  date: String
+  deviceName: String
+  fee: Int
+  id: ID!
+  itemType: String
+  receiptType: String
+}
