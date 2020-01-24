@@ -6,6 +6,7 @@ class Header extends Component {
         <h1>
           <a href="/">Fufore Local Government Markets</a>
         </h1>
+        <br />
       </nav>
     );
   }
