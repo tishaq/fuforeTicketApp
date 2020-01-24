@@ -1,8 +1,8 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTicket = `query GetTicket($id: ID!) {
-  getTicket(id: $id) {
+export const getFuforeTickets = `query GetFuforeTickets($id: ID!) {
+  getFuforeTickets(id: $id) {
     date
     deviceName
     fee
@@ -12,12 +12,12 @@ export const getTicket = `query GetTicket($id: ID!) {
   }
 }
 `;
-export const listTickets = `query ListTickets(
-  $filter: TableTicketFilterInput
+export const listFuforeTicketss = `query ListFuforeTicketss(
+  $filter: ModelFuforeTicketsFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listTickets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listFuforeTicketss(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       date
       deviceName

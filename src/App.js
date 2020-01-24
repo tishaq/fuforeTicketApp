@@ -43,14 +43,14 @@ class App extends Component {
       //console.log(date);
       do {
         raw = await API.graphql(
-          graphqlOperation(queries.listTickets, {
+          graphqlOperation(queries.listFuforeTicketss, {
             filter: { date: { beginsWith: date } },
             limit: 10000,
             nextToken: nextToken
           })
         );
-        nextToken = raw.data.listTickets.nextToken;
-        raw.data.listTickets.items.map(value => results.push(value));
+        nextToken = raw.data.listFuforeTicketss.nextToken;
+        raw.data.listFuforeTicketss.items.map(value => results.push(value));
       } while (nextToken);
       //console.log(results);
       return { results, error };
@@ -77,6 +77,7 @@ class App extends Component {
       Object.entries(d)
         .sort()
         .forEach(e => {
+          let grandTotal = 0;
           html += `
             <div class="row">
               <div class="col-lg-12">
@@ -97,14 +98,12 @@ class App extends Component {
                         <thead>
                           <tr>
                             <th>Item</th>
-                            <th>Quantity Type</th>
-                            <th>Fee</th>
                             <th>Amount</th>
                           </tr>
                         </thead>
                         <tbody>`;
           Object.entries(e[1]).forEach(f => {
-            html += `<tr><th>${f[0]}</th><th></th><th></th><th></th></tr>`;
+            html += `<tr><th>${f[0]}</th><th></th></tr>`;
             let subtotal = 0;
             Object.entries(f[1])
               .sort()
@@ -112,11 +111,6 @@ class App extends Component {
                 const amount = g[1].reduce((acc, cur) => acc + cur);
                 html += ` <tr>
                     <td>${g[0]}</td>
-                    <td>${amount / g[1][0]}</td>
-                    <td>${g[1][0].toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "NGN"
-                    })}</td>
                     <td>${amount.toLocaleString("en-US", {
                       style: "currency",
                       currency: "NGN"
@@ -124,18 +118,24 @@ class App extends Component {
                   </tr>`;
                 subtotal += amount;
               });
+            grandTotal += subtotal;
             html += `
               <tr>
                 <th>Sub-Total</th>
-                <th></th>
-                <th></th>
                 <th>${subtotal.toLocaleString("en-US", {
                   style: "currency",
                   currency: "NGN"
                 })}</th>
               </tr>`;
           });
-          html += `</tbody>
+          html += `      <tr>
+          <th>Grand Total</th>
+          <th>${grandTotal.toLocaleString("en-US", {
+            style: "currency",
+            currency: "NGN"
+          })}</th>
+        </tr>
+          </tbody>
                       </table>
                     </div>
                   </div>

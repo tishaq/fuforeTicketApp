@@ -1,20 +1,8 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTicket = `subscription OnCreateTicket(
-  $deviceName: String
-  $fee: Int
-  $id: ID
-  $itemType: String
-  $receiptType: String
-) {
-  onCreateTicket(
-    deviceName: $deviceName
-    fee: $fee
-    id: $id
-    itemType: $itemType
-    receiptType: $receiptType
-  ) {
+export const onCreateFuforeTickets = `subscription OnCreateFuforeTickets {
+  onCreateFuforeTickets {
     date
     deviceName
     fee
@@ -24,20 +12,8 @@ export const onCreateTicket = `subscription OnCreateTicket(
   }
 }
 `;
-export const onDeleteTicket = `subscription OnDeleteTicket(
-  $deviceName: String
-  $fee: Int
-  $id: ID
-  $itemType: String
-  $receiptType: String
-) {
-  onDeleteTicket(
-    deviceName: $deviceName
-    fee: $fee
-    id: $id
-    itemType: $itemType
-    receiptType: $receiptType
-  ) {
+export const onDeleteFuforeTickets = `subscription OnDeleteFuforeTickets {
+  onDeleteFuforeTickets {
     date
     deviceName
     fee
@@ -47,20 +23,8 @@ export const onDeleteTicket = `subscription OnDeleteTicket(
   }
 }
 `;
-export const onUpdateTicket = `subscription OnUpdateTicket(
-  $deviceName: String
-  $fee: Int
-  $id: ID
-  $itemType: String
-  $receiptType: String
-) {
-  onUpdateTicket(
-    deviceName: $deviceName
-    fee: $fee
-    id: $id
-    itemType: $itemType
-    receiptType: $receiptType
-  ) {
+export const onUpdateFuforeTickets = `subscription OnUpdateFuforeTickets {
+  onUpdateFuforeTickets {
     date
     deviceName
     fee

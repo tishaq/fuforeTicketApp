@@ -4,68 +4,113 @@
   subscription: Subscription
 }
 
-type Mutation {
-  createTicket(input: CreateTicketInput!): Ticket
-  deleteTicket(input: DeleteTicketInput!): Ticket
-  updateTicket(input: UpdateTicketInput!): Ticket
-}
-
-type Query {
-  getTicket(id: ID!): Ticket
-  listTickets(filter: TableTicketFilterInput, limit: Int, nextToken: String): TicketConnection
-}
-
-type Subscription {
-  onCreateTicket(deviceName: String, fee: Int, id: ID, itemType: String, receiptType: String): Ticket @aws_subscribe(mutations : ["createTicket"])
-  onDeleteTicket(deviceName: String, fee: Int, id: ID, itemType: String, receiptType: String): Ticket @aws_subscribe(mutations : ["deleteTicket"])
-  onUpdateTicket(deviceName: String, fee: Int, id: ID, itemType: String, receiptType: String): Ticket @aws_subscribe(mutations : ["updateTicket"])
-}
-
-type Ticket {
-  date: String
-  deviceName: String
-  fee: Int
+type FuforeTickets {
+  date: String!
+  deviceName: String!
+  fee: Int!
   id: ID!
-  itemType: String
-  receiptType: String
+  itemType: String!
+  receiptType: String!
 }
 
-type TicketConnection {
-  items: [Ticket]
+type ModelFuforeTicketsConnection {
+  items: [FuforeTickets]
   nextToken: String
 }
 
-input CreateTicketInput {
-  date: String
-  deviceName: String
-  fee: Int
+type Mutation {
+  createFuforeTickets(condition: ModelFuforeTicketsConditionInput, input: CreateFuforeTicketsInput!): FuforeTickets
+  deleteFuforeTickets(condition: ModelFuforeTicketsConditionInput, input: DeleteFuforeTicketsInput!): FuforeTickets
+  updateFuforeTickets(condition: ModelFuforeTicketsConditionInput, input: UpdateFuforeTicketsInput!): FuforeTickets
+}
+
+type Query {
+  getFuforeTickets(id: ID!): FuforeTickets
+  listFuforeTicketss(filter: ModelFuforeTicketsFilterInput, limit: Int, nextToken: String): ModelFuforeTicketsConnection
+}
+
+type Subscription {
+  onCreateFuforeTickets: FuforeTickets @aws_subscribe(mutations : ["createFuforeTickets"])
+  onDeleteFuforeTickets: FuforeTickets @aws_subscribe(mutations : ["deleteFuforeTickets"])
+  onUpdateFuforeTickets: FuforeTickets @aws_subscribe(mutations : ["updateFuforeTickets"])
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateFuforeTicketsInput {
+  date: String!
+  deviceName: String!
+  fee: Int!
   id: ID
-  itemType: String
-  receiptType: String
+  itemType: String!
+  receiptType: String!
 }
 
-input DeleteTicketInput {
-  id: ID!
+input DeleteFuforeTicketsInput {
+  id: ID
 }
 
-input TableBooleanFilterInput {
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
   eq: Boolean
   ne: Boolean
 }
 
-input TableFloatFilterInput {
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
   between: [Float]
-  contains: Float
   eq: Float
   ge: Float
   gt: Float
   le: Float
   lt: Float
   ne: Float
-  notContains: Float
 }
 
-input TableIDFilterInput {
+input ModelFuforeTicketsConditionInput {
+  and: [ModelFuforeTicketsConditionInput]
+  date: ModelStringInput
+  deviceName: ModelStringInput
+  fee: ModelIntInput
+  itemType: ModelStringInput
+  not: ModelFuforeTicketsConditionInput
+  or: [ModelFuforeTicketsConditionInput]
+  receiptType: ModelStringInput
+}
+
+input ModelFuforeTicketsFilterInput {
+  and: [ModelFuforeTicketsFilterInput]
+  date: ModelStringInput
+  deviceName: ModelStringInput
+  fee: ModelIntInput
+  id: ModelIDInput
+  itemType: ModelStringInput
+  not: ModelFuforeTicketsFilterInput
+  or: [ModelFuforeTicketsFilterInput]
+  receiptType: ModelStringInput
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
   beginsWith: ID
   between: [ID]
   contains: ID
@@ -76,21 +121,34 @@ input TableIDFilterInput {
   lt: ID
   ne: ID
   notContains: ID
+  size: ModelSizeInput
 }
 
-input TableIntFilterInput {
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
   between: [Int]
-  contains: Int
   eq: Int
   ge: Int
   gt: Int
   le: Int
   lt: Int
   ne: Int
-  notContains: Int
 }
 
-input TableStringFilterInput {
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
   beginsWith: String
   between: [String]
   contains: String
@@ -101,18 +159,10 @@ input TableStringFilterInput {
   lt: String
   ne: String
   notContains: String
+  size: ModelSizeInput
 }
 
-input TableTicketFilterInput {
-  date: TableStringFilterInput
-  deviceName: TableStringFilterInput
-  fee: TableIntFilterInput
-  id: TableIDFilterInput
-  itemType: TableStringFilterInput
-  receiptType: TableStringFilterInput
-}
-
-input UpdateTicketInput {
+input UpdateFuforeTicketsInput {
   date: String
   deviceName: String
   fee: Int

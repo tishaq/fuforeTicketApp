@@ -1,8 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTicket = `mutation CreateTicket($input: CreateTicketInput!) {
-  createTicket(input: $input) {
+export const createFuforeTickets = `mutation CreateFuforeTickets(
+  $condition: ModelFuforeTicketsConditionInput
+  $input: CreateFuforeTicketsInput!
+) {
+  createFuforeTickets(condition: $condition, input: $input) {
     date
     deviceName
     fee
@@ -12,8 +15,11 @@ export const createTicket = `mutation CreateTicket($input: CreateTicketInput!) {
   }
 }
 `;
-export const deleteTicket = `mutation DeleteTicket($input: DeleteTicketInput!) {
-  deleteTicket(input: $input) {
+export const deleteFuforeTickets = `mutation DeleteFuforeTickets(
+  $condition: ModelFuforeTicketsConditionInput
+  $input: DeleteFuforeTicketsInput!
+) {
+  deleteFuforeTickets(condition: $condition, input: $input) {
     date
     deviceName
     fee
@@ -23,8 +29,11 @@ export const deleteTicket = `mutation DeleteTicket($input: DeleteTicketInput!) {
   }
 }
 `;
-export const updateTicket = `mutation UpdateTicket($input: UpdateTicketInput!) {
-  updateTicket(input: $input) {
+export const updateFuforeTickets = `mutation UpdateFuforeTickets(
+  $condition: ModelFuforeTicketsConditionInput
+  $input: UpdateFuforeTicketsInput!
+) {
+  updateFuforeTickets(condition: $condition, input: $input) {
     date
     deviceName
     fee

@@ -1,0 +1,15 @@
+{
+    "fufore": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-fuforeticketapp-fufore-174742-authRole",
+            "UnauthRoleArn": "arn:aws:iam::367770468775:role/amplify-fuforeticketapp-fufore-174742-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::367770468775:role/amplify-fuforeticketapp-fufore-174742-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-fuforeticketapp-fufore-174742-deployment",
+            "UnauthRoleName": "amplify-fuforeticketapp-fufore-174742-unauthRole",
+            "StackName": "amplify-fuforeticketapp-fufore-174742",
+            "StackId": "arn:aws:cloudformation:us-east-2:367770468775:stack/amplify-fuforeticketapp-fufore-174742/7318b7b0-3adb-11ea-8978-02402ec64522",
+            "AmplifyAppId": "dq7tdiuqetjvd"
+        }
+    }
+}
