@@ -40,7 +40,7 @@ class App extends Component {
         (datetime.getDate() < 10
           ? "0" + datetime.getDate()
           : datetime.getDate());
-      //console.log(date);
+      console.log(date);
       do {
         raw = await API.graphql(
           graphqlOperation(queries.listFuforeTicketss, {
